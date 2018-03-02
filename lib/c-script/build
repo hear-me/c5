@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+CC=gcc
+
+$CC -O2 -Wall -o host.o -c src/host.c -Iinclude
+$CC -g -Wall -o host-dbg.o -c src/host.c -Iinclude -DDEBUG_IMPORTS
+$CC -O2 -Wall -o script.o -c src/script.c -Iinclude
+$CC -g -Wall -o script-dbg.o -c src/script.c -Iinclude
+
+ar rcs c-script.a host.o script.o
+ar rcs c-script-dbg.a host-dbg.o script-dbg.o
+
+rm *.o

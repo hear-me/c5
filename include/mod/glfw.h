@@ -1,0 +1,21 @@
+#ifndef MOD_GLFW_H
+#define MOD_GLFW_H
+
+/* STATIC EVENTS */
+#define MOD_GLFW_STATIC_EVENT_QUERY_PRESENTATION_SUPPORT (1)
+
+/* INSTANCE EVENTS */
+#define MOD_GLFW_EVENT_POLL (1)
+#define MOD_GLFW_EVENT_KEY_CALLBACK (2)
+#define MOD_GLFW_EVENT_BUTTON_CALLBACK (3)
+#define MOD_GLFW_EVENT_CURSOR_CALLBACK (4)
+
+/* EXTENSIONS */
+#define MOD_GLFW_EXT_TIMER_GET (1)
+#define MOD_GLFW_EXT_TIMER_GET_PFN(pfn) double (*pfn)()
+#define MOD_GLFW_EXT_TIMER_GET_VAL (2)
+#define MOD_GLFW_EXT_TIMER_GET_VAL_PFN(pfn) unsigned long (*pfn)()
+#define MOD_GLFW_EXT_TIMER_SET (3)
+#define MOD_GLFW_EXT_TIMER_SET_PFN(pfn) void (*pfn)(double)
+
+#endif /* MOD_GLFW_H */

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+STATIC="lib/c-script/c-script-dbg.a"
+DYNAMIC="-lglfw -lvulkan"
+INCLUDE="-Ilib/c-script/include -Iinclude"
+NAME="main"
+CC=gcc
+
+find mods -name '*.c' -exec $CC -g -Wall -c {} $INCLUDE \;
+find src -name '*.c' -exec $CC -g -Wall -c {} $INCLUDE \;
+
+$CC -o $NAME *.o $STATIC $DYNAMIC
+rm *.o
