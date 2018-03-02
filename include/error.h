@@ -11,7 +11,7 @@ __attribute__((unused)) static void error(const char * msg, ...) {
 #else /* !MODNAME */
 #ifdef IS_IMPORTABLE
     fprintf(stderr, "[ERROR] %s/(importable): ", HOSTNAME);
-#else
+#else /* !IS_IMPORTABLE */
     fprintf(stderr, "[ERROR] %s: ", HOSTNAME);
 #endif /* IS_IMPORTABLE */
 #endif /* MODNAME */
@@ -24,14 +24,18 @@ __attribute__((unused)) static void error(const char * msg, ...) {
 __attribute__((unused)) static void warn(const char * msg, ...) {
     va_list args;
     va_start(args, msg);
-#ifdef MODULE
+#ifdef MODNAME
     fprintf(stderr, "[WARN] %s/%s:", HOSTNAME, MODNAME);
-#else /* !MODULE */
+#else /* !MODNAME */
+#ifdef IS_IMPORTABLE
+    fprintf(stderr, "[WARN] %s/(importable): ", HOSTNAME);
+#else /* !IS_IMPORTABLE */
     fprintf(stderr, "[WARN] %s:", HOSTNAME);
-#endif /* MODULE */
+#endif /* IS_IMPORTABLE */
+#endif /* MODNAME */
     vfprintf(stderr, msg, args);
     va_end(args);
 }
 
-
 #endif /* ERROR_H */
+
