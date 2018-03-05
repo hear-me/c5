@@ -9,7 +9,7 @@ extern const struct host * host;
 
 #define IMPORTABLE(name) \
     __attribute__((constructor(1001))) static void init() { \
-        host->importable_register(name, &import); \
+        host->importable_register(name, &_import); \
     }
 
 #endif /* SCRIPT_IMPORTABLE_H */

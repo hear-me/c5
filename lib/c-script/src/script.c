@@ -53,4 +53,3 @@ const struct extension * script_ext_get(const struct script * s, int id) {
     return NULL;
 }
 
-

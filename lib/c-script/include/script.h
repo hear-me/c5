@@ -27,3 +27,4 @@ void script_event(const struct script * s, void * inst, int ev, ...);
 const struct extension * script_ext_get(const struct script * s, int id);
 
 #endif /* SCRIPT_SCRIPT_H */
+

@@ -77,11 +77,20 @@ void importable_unload_all() {
 }
 
 const struct script * import(const char * name) {
+    struct importable * importable = importable_get(name);
+    if (importable) {
+        return importable_import(importable);
+    } else {
+        return NULL;
+    }
+}
+
+struct importable * importable_get(const char * name) {
     unsigned int count = importable_count_get();
     struct importable * importables = importable_get_all();
     for (unsigned int i = 0; i < count; i++) {
-        if (strcmp(importable_get_name(&importables[i]), name) == 0) {
-            return importable_import(&importables[i]);
+        if (strcmp(importables[i].name, name) == 0) {
+            return &importables[i];
         }
     }
 #ifdef DEBUG_IMPORTS
