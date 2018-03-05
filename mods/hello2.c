@@ -18,7 +18,7 @@ static void static_event(struct script * script, int ev, va_list args) {
     error("dummy error %d\n", ev);
 }
 
-static const struct script * import() {
+static const struct script * _import() {
 
     const static struct script script = {
         .unload = &unload,

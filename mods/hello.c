@@ -10,7 +10,7 @@ static void unload(struct script * script) {
     printf("Goodbye, %s from mod_hello!\n", host->name);
 }
 
-static const struct script * import() {
+static const struct script * _import() {
 
     const static struct script script = {
         .unload = &unload,

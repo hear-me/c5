@@ -8,6 +8,7 @@
 #include "mod/hello2.h"
 
 const char * HOSTNAME = "main";
+const int HOSTVER[3] = { 1, 0, 0 };
 
 __attribute__((destructor)) static void cleanup() {
     importable_unload_all();
@@ -27,6 +28,16 @@ int main(int argc, char ** argv) {
     const struct script * glfw_script = import("glfw");
 
     /*
+    unsigned int count;
+    const char ** extensions;
+    script_static_event(glfw_script, MOD_GLFW_STATIC_EVENT_GET_REQUIRED_INSTANCE_EXTENSIONS, &count, &extensions);
+
+    for (unsigned int i = 0; i < count; i++) {
+        printf("require: %s\n", extensions[i]);
+    }
+    */
+
+    /*
     const char ** (*glfw_ext)(unsigned int *) =
         script_ext_get(glfw_script, "GetRequiredInstanceExtensions")->data;
 
@@ -37,6 +48,8 @@ int main(int argc, char ** argv) {
         printf("require: %s\n", req[i]);
     }
     */
+
+    __attribute__((unused)) const struct script * vk_core_script = import("vulkan_core");
 
     void * glfw_inst = script_create(
             glfw_script,

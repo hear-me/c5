@@ -3,6 +3,7 @@
 
 /* STATIC EVENTS */
 #define MOD_GLFW_STATIC_EVENT_QUERY_PRESENTATION_SUPPORT (1)
+#define MOD_GLFW_STATIC_EVENT_GET_REQUIRED_INSTANCE_EXTENSIONS (2)
 
 /* INSTANCE EVENTS */
 #define MOD_GLFW_EVENT_POLL (1)
@@ -17,5 +18,7 @@
 #define MOD_GLFW_EXT_TIMER_GET_VAL_PFN(pfn) unsigned long (*pfn)()
 #define MOD_GLFW_EXT_TIMER_SET (3)
 #define MOD_GLFW_EXT_TIMER_SET_PFN(pfn) void (*pfn)(double)
+#define MOD_GLFW_EXT_GET_INST_PROC_ADDR (4)
+#define MOD_GLFW_EXT_GET_INST_PROC_ADDR_PFN(pfn) void (*)() (*pfn)(void *, const char *)
 
 #endif /* MOD_GLFW_H */

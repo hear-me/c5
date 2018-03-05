@@ -75,11 +75,26 @@ static void destroy_window(struct script * script, void * inst) {
 }
 
 static void static_event(struct script * s, int ev, va_list args) {
+    unsigned int * count;
+    const char *** ext;
+    unsigned int index;
+    void * v0, * v1;
+    bool * out;
+
     switch (ev) {
         default:
             break;
         case MOD_GLFW_STATIC_EVENT_QUERY_PRESENTATION_SUPPORT:
-             /* TODO */
+             v0 = va_arg(args, typeof(v0));
+             v1 = va_arg(args, typeof(v1));
+             index = va_arg(args, typeof(index));
+             out = va_arg(args, typeof(out));
+             *out = (bool)glfwGetPhysicalDevicePresentationSupport(v0, v1, index);
+             break;
+        case MOD_GLFW_STATIC_EVENT_GET_REQUIRED_INSTANCE_EXTENSIONS:
+             count = va_arg(args, typeof(count));
+             ext = va_arg(args, typeof(ext));
+             *ext = glfwGetRequiredInstanceExtensions(count);
              break;
     }
 }
@@ -124,7 +139,7 @@ static void window_event(struct script * s, void * inst, int ev, va_list args) {
     }
 }
 
-static const struct script * import() {
+static const struct script * _import() {
 
     const static struct script script = {
         .unload = &unload,
@@ -147,6 +162,11 @@ static const struct script * import() {
                 .id = MOD_GLFW_EXT_TIMER_SET,
                 .name = "glfwSetTime",
                 .data = (void*)&glfwSetTime
+            },
+            {
+                .id = MOD_GLFW_EXT_GET_INST_PROC_ADDR,
+                .name = "glfwGetInstanceProcAddress",
+                .data = (void*)glfwGetInstanceProcAddress
             },
             NULL_EXTENSION
         }
