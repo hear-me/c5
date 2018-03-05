@@ -3,7 +3,7 @@
 CC=gcc
 
 $CC -O2 -Wall -o host.o -c src/host.c -Iinclude
-$CC -g -Wall -o host-dbg.o -c src/host.c -Iinclude -DDEBUG_IMPORTS
+$CC -g -Wall -o host-dbg.o -c src/host.c -Iinclude -DDEBUG_SCRIPT
 $CC -O2 -Wall -o script.o -c src/script.c -Iinclude
 $CC -g -Wall -o script-dbg.o -c src/script.c -Iinclude
 

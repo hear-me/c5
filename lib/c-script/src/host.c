@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef DEBUG_IMPORTS
+#ifdef DEBUG_SCRIPT
 #include <stdio.h>
-#endif /* DEBUG_IMPORTS */
+#endif /* DEBUG_SCRIPT */
 
 static void importable_register(const char * name, const struct script * (*importer)());
 
@@ -35,13 +35,13 @@ struct importable * importable_get_all() {
 
 static void importable_register(const char * name, const struct script * (*importer)()) {
 
-#ifdef DEBUG_IMPORTS
+#ifdef DEBUG_SCRIPT
     for (unsigned int i = 0; i < importable_module_count; i++) {
         if (strcmp(name, importable_modules[i].name) == 0) {
             fprintf(stderr, "DEBUG_IMPORTS: repeated module name '%s'\n", name);
         }
     }
-#endif
+#endif /* DEBUG_SCRIPT */
 
     struct importable * p = malloc(sizeof(*importable_modules) * (importable_module_count + 1));
     struct importable * pold = importable_modules;
@@ -93,9 +93,9 @@ struct importable * importable_get(const char * name) {
             return &importables[i];
         }
     }
-#ifdef DEBUG_IMPORTS
+#ifdef DEBUG_SCRIPT
     fprintf(stderr, "DEBUG_IMPORTS: import(%s) not found\n", name);
-#endif /* DEBUG_IMPORTS */
+#endif /* DEBUG_SCRIPT */
     return NULL;
 }
 
